@@ -1,0 +1,19 @@
+{
+  "diff": true,
+  "recursive": true,
+  "spec": "**/*.spec.js",
+  "extension": ["js", "cjs", "mjs"],
+  "package": "./package.json",
+  "reporter": "mochawesome",
+  "reporterOptions": [
+    "reportDir=reports",
+    "reportFilename=unit_tests",
+    "reportTitle=Unit Tests",
+    "inline=true",
+    "charts=true"
+  ],
+  "slow": 75,
+  "timeout": 2000,
+  "ui": "bdd",
+  "watch-ignore": ["node_modules",".git"]
+}
