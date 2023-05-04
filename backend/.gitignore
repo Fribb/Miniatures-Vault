@@ -1,0 +1,41 @@
+# Application
+.env
+migrations
+database.sqlite
+logs
+public/data/creators/*
+!public/data/creators/no-creator.png
+public/data/upload/*
+!public/data/upload/.gitkeep
+
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+# npm
+node_modules
+package-lock.json
+*.log
+*.gz
+
+# Coveralls
+coverage
+
+# Benchmarking
+benchmarks/graphs
+
+# mochawesome report
+reports
+
+/.nyc_output/
+.scannerwork
