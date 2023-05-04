@@ -4,14 +4,17 @@
   "spec": "**/*.spec.js",
   "extension": ["js", "cjs", "mjs"],
   "package": "./package.json",
-  "reporter": "mochawesome",
-  "reporterOptions": [
-    "reportDir=reports",
-    "reportFilename=unit_tests",
-    "reportTitle=Unit Tests",
-    "inline=true",
-    "charts=true"
-  ],
+  "reporterEnabled": "mochawesome,mocha-sonarqube-reporter",
+  "mochawesomeReporterOptions": {
+    "reportDir": "reports",
+    "reportFilename": "unit_tests",
+    "reportTitle": "Unit Tests",
+    "inline": true,
+    "charts": true
+  },
+  "mochaSonarqubeReporterReporterOptions": {
+    "output": "reports/sonarqube.xml"
+  },
   "slow": 75,
   "timeout": 2000,
   "ui": "bdd",

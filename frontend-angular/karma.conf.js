@@ -13,6 +13,7 @@ module.exports = function (config) {
       require('karma-htmlfile-reporter'),
       require('karma-sonarqube-reporter'),
       require('karma-viewport'),
+      require('karma-sonarqube-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {

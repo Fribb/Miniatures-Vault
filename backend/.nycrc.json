@@ -1,0 +1,7 @@
+{
+  "check-coverage": true,
+  "include": ["**/*.spec.js"],
+  "exclude": ["**/node_modules/**"],
+  "reporter": ["lcovonly"],
+  "report-dir": "./reports"
+}
