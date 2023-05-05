@@ -5,7 +5,8 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
-      "karma-viewport"
+      "karma-viewport",
+      "@angular/localize"
     ]
   },
   "files": [
