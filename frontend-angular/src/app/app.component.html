@@ -4,6 +4,9 @@
       <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
       </a>
+      <a mat-list-item routerLink="/miniatures" (click)="sidenav.close()">
+        <mat-icon></mat-icon> <span class="nav-caption">Miniatures</span>
+      </a>
       <a mat-list-item routerLink="/creators" (click)="sidenav.close()">
         <mat-icon></mat-icon> <span class="nav-caption">Creators</span>
       </a>
@@ -11,14 +14,14 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="wrapper">
+    <div class="wrapper" fxLayout="column">
       <header class="container">
-        <app-header></app-header>
+        <app-header (sidenavToggle)="sidenav.open()"></app-header>
       </header>
-      <main id="content" class="container">
+      <main id="content" class="container" fxFlex>
         <router-outlet></router-outlet>
       </main>
-      <footer class="container">
+      <footer class="container" fxFlexOffset="auto">
         <app-footer></app-footer>
       </footer>
     </div>

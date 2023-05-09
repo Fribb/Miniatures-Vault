@@ -5,6 +5,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {HarnessLoader} from "@angular/cdk/testing";
 import {Routes} from "@angular/router";
 import {MiniaturesComponent} from "./content/miniatures/miniatures.component";
+import {CreatorsComponent} from "./content/creators/creators.component";
 import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
 
 describe('AppComponent', () => {
@@ -15,6 +16,7 @@ describe('AppComponent', () => {
   const routes: Routes = [
     {path: '', component: MiniaturesComponent},
     {path: 'miniatures', component: MiniaturesComponent},
+    {path: 'creators', component: CreatorsComponent},
   ];
 
   beforeEach(async () => {

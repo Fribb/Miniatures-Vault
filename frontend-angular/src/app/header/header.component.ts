@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Output() public sidenavToggle = new EventEmitter();
+  public title: string = "Miniatures-Vault";
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  public onToggleSidenav(): void {
+    this.sidenavToggle.emit();
+  }
+
+  public openMiniatureDialog(): void {
+    // TODO: implement opening the Miniature Dialog
   }
 
 }
