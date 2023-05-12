@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {UtilsService} from "../shared/services/utils.service";
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
-  public title: string = "Miniatures-Vault";
+  public title: string = "";
 
-  constructor() {
+  constructor(private utilsService: UtilsService) {
+    this.title = this.utilsService.getAppTitle();
   }
 
   ngOnInit(): void {

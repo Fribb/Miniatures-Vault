@@ -6,7 +6,8 @@
     "types": [
       "jasmine",
       "karma-viewport",
-      "@angular/localize"
+      "@angular/localize",
+      "node"
     ]
   },
   "files": [
