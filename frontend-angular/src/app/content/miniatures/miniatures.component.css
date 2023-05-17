@@ -1,0 +1,15 @@
+#card {
+  max-width: 20rem;
+}
+
+#card:hover {
+  transform: scale(1.025);
+}
+
+#card-header-image {
+  background-size: cover;
+}
+
+#add-model-button {
+  padding: 0;
+}

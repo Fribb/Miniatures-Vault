@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Miniature} from "../../shared/interfaces/miniature";
 
 @Component({
   selector: 'app-miniatures',
@@ -7,9 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MiniaturesComponent implements OnInit {
 
+  public miniatureList: Miniature[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    const miniature: Miniature = { name: "Test Miniature" };
+    this.miniatureList.push(miniature);
+  }
+
+  openMiniatureEditDialog(miniature: Miniature): void {
+    // TODO: open dialog to edit miniature
   }
 
 }
