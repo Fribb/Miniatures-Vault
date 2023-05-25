@@ -37,6 +37,11 @@ describe('MiniaturesComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should load harness', async () => {
+    const harnesses = await loader.getAllHarnesses(MatCardHarness);
+    expect(harnesses.length).toBe(1);
+  });
+
   it('should render one placeholder miniature', async () => {
     const card = await loader.getAllHarnesses(MatCardHarness.with({selector: '#card'}));
     const cardTitle = await card[0].getTitleText();
