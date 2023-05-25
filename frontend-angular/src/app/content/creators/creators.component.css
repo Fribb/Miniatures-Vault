@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.creatorImageRow {
+  width: 8%;
+}
+
+.creatorImage {
+  width: 50px;
+}
+
+.creatorFilter {
+  padding-top: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.buttonColumn {
+  width: 5%;
+}
+
+.add-creator-icon {
+  transform: scale(1.5);
+}
