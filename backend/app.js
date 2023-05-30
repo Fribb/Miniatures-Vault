@@ -1,41 +1,55 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config();
+const logger = require('./utils/logger');
 
-var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
-var app = express();
+const app = express();
+const isProduction = process.env.NODE_ENV === 'production'
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// routes
+logger.info("Setting up Routes");
+app.use(require('./src/routes'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res) {
+  let statusCode = 404;
+  let error = createError(statusCode);
+  logger.warn(`route "${req.originalUrl}" ${error.message}`);
+  res.status(statusCode).json(error);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.use(function(err, req, res) {
+  let statusCode = err.status || 500;
+  let error = createError(statusCode);
+
+  if (!isProduction) {
+    logger.error(err.stack);
+  } else {
+    logger.error(err.message);
+  }
+
+  res.status(statusCode).json(error);
 });
 
+// database handler
+logger.info("setting up Database");
+const database = require("./src/models");
+if (isProduction) {
+  database.sequelize.sync();
+} else {
+  database.sequelize.sync({force: true });
+}
+
 module.exports = app;
+
+logger.info("Server start complete in " + process.env.NODE_ENV + " mode");
