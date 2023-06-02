@@ -9,7 +9,7 @@ module.exports = {
   test: {
     logging: false,
     dialect: "sqlite",
-    storage: ":memory"
+    storage: ":memory:"
   },
   production: {
     logging: (msg) => logger.debug(msg),

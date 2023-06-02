@@ -1,13 +1,13 @@
 require('dotenv').config();
 const logger = require('./utils/logger');
+const utils = require('./utils/utils');
+const apiResponses = require('./utils/api-responses');
 
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const isProduction = process.env.NODE_ENV === 'production'
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -20,36 +20,25 @@ app.use(require('./src/routes'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {
-  let statusCode = 404;
-  let error = createError(statusCode);
-  logger.warn(`route "${req.originalUrl}" ${error.message}`);
-  res.status(statusCode).json(error);
+
+  const notFound = apiResponses.notFound();
+
+  res.status(notFound.code).json(notFound);
 });
 
-// error handler
+app.use(function(err, req, res, next) {
 
-app.use(function(err, req, res) {
-  let statusCode = err.status || 500;
-  let error = createError(statusCode);
+  const error = apiResponses.error();
 
-  if (!isProduction) {
-    logger.error(err.stack);
-  } else {
+  if (utils.isProduction()) {
     logger.error(err.message);
+  } else {
+    logger.error(err.stack);
   }
 
-  res.status(statusCode).json(error);
+  res.status(error.code).json(error);
 });
-
-// database handler
-logger.info("setting up Database");
-const database = require("./src/models");
-if (isProduction) {
-  database.sequelize.sync();
-} else {
-  database.sequelize.sync({force: true });
-}
 
 module.exports = app;
 
-logger.info("Server start complete in " + process.env.NODE_ENV + " mode");
+logger.info("App loaded")

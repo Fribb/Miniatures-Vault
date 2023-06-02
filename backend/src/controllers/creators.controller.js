@@ -1,5 +1,6 @@
 const logger = require('../../utils/logger');
 const db = require('../models');
+const apiResponses = require('../../utils/api-responses');
 
 /**
  * get all available creators
@@ -14,16 +15,11 @@ exports.getAll = (request, response) => {
     };
 
     db.Creator.findAll(attributes).then(data => {
-        const body = {
-            status: 200,
-            data: data
-        };
-        response.status(body.status).json(body);
+        const okResponse = apiResponses.ok(data);
+        response.status(okResponse.code).json(okResponse);
     }).catch(error => {
-        const body = {
-            status: 500,
-            message: error.message
-        };
-        response.status(body.status).json(body);
+        const errorResponse = apiResponses.generic(error.code, error.message);
+        response.status(errorResponse.code).json(errorResponse);
     });
+
 };

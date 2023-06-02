@@ -1,7 +1,7 @@
 const log4js = require('log4js');
 
 const LOG_PATH = './logs';
-const LOG_NAME = 'backend.log';
+const LOG_NAME = 'server.log';
 
 log4js.configure({
     appenders: {

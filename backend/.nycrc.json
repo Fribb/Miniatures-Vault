@@ -1,6 +1,6 @@
 {
   "check-coverage": true,
-  "include": ["**/*.spec.js"],
+  "include": ["src/controllers"],
   "exclude": ["**/node_modules/**"],
   "reporter": ["lcovonly"],
   "report-dir": "./reports"
