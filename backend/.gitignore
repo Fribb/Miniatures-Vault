@@ -1,6 +1,7 @@
 # Application
 .env
 migrations
+seeders
 database.sqlite
 logs
 public/data/creators/*

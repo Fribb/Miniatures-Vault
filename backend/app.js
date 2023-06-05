@@ -20,6 +20,7 @@ app.use(require('./src/routes'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {
+  logger.info("Endpoint not found [" + req.originalUrl + "]");
 
   const notFound = apiResponses.notFound();
 
